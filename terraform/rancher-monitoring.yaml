@@ -1,0 +1,24 @@
+grafana:
+  persistence:
+    accessModes:
+      - ReadWriteOnce
+    enabled: true
+    finalizers:
+      - kubernetes.io/pvc-protection
+    inMemory:
+      enabled: false
+    size: 50GB
+    type: pvc
+    storageClassName: longhorn-harvester
+
+prometheus:
+  prometheusSpec:
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 50Gi
+          storageClassName: longhorn-harvester
